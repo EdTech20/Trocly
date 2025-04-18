@@ -14,6 +14,7 @@ import Wishlist from "./pages/Wishlist";
 import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import SignUpForm from "./pages/Signup";
+import LoginWithEcommerceHero from "./pages/Login";
 // import ClothingPage from "./pages/ClothingPage";
 // import ShoesPage from "./pages/ShoesPage"
 
@@ -24,7 +25,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/shop" element={<Shop />} />
@@ -43,13 +44,14 @@ const App = () => (
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/account" element={<Account />} />
           <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/login" element={<LoginWithEcommerceHero />} />
           <Route path="*" element={<NotFound />} />
           {/* <Route path="/clothCategory" element={<ClothingPage />} /> */}
           {/* <Route path="shoesCategory" element={<ShoesPage />} /> */}
 
 
         </Routes>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </TooltipProvider>
   </QueryClientProvider>
 );

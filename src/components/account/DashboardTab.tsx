@@ -85,7 +85,7 @@ const DashboardTab = ({ profile, setProfile, orders, addresses, setActiveTab }: 
             </div>
             <div>
               <h4 className="text-lg font-medium">Orders</h4>
-              <p className="text-2xl font-semibold mt-1">0</p>  
+              <p className="text-2xl font-semibold mt-1"></p>  
               <button 
                 onClick={() => setActiveTab('orders')}
                 className="text-trocly-red text-sm mt-2 hover:underline inline-flex items-center"
@@ -104,7 +104,7 @@ const DashboardTab = ({ profile, setProfile, orders, addresses, setActiveTab }: 
             </div>
             <div>
               <h4 className="text-lg font-medium">Wishlist</h4>
-              <p className="text-2xl font-semibold mt-1">0</p>
+              <p className="text-2xl font-semibold mt-1"></p>
               <Link 
                 to="/wishlist"
                 className="text-trocly-red text-sm mt-2 hover:underline inline-flex items-center"
@@ -123,7 +123,7 @@ const DashboardTab = ({ profile, setProfile, orders, addresses, setActiveTab }: 
             </div>
             <div>
               <h4 className="text-lg font-medium">Addresses</h4>
-              <p className="text-2xl font-semibold mt-1">0</p>
+              <p className="text-2xl font-semibold mt-1"></p>
               <button 
                 onClick={() => setActiveTab('addresses')}
                 className="text-trocly-red text-sm mt-2 hover:underline inline-flex items-center"

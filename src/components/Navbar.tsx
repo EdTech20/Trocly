@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart, Heart, Search, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase"; // adjust the path if needed
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(3); // Mock data
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state
   const location = useLocation();
 
   useEffect(() => {
@@ -22,9 +25,29 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const isActive = (path: string) => {
     return location.pathname === path;
   };
+
+  useEffect(() => {
+    const handleCartUpdate = () => {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCartCount(cart.length); // or however your `addToCart` saves it
+    };
+
+    window.addEventListener("cartUpdated", handleCartUpdate);
+    handleCartUpdate(); // Run it initially
+
+    return () => window.removeEventListener("cartUpdated", handleCartUpdate);
+  }, []);
 
   return (
     <header 
@@ -118,12 +141,14 @@ const Navbar = () => {
                 </Badge>
               )}
             </Link>
-            <Link 
-              to="/signup" 
-              className="ml-2 px-4 py-2 bg-trocly-red text-white rounded-full text-sm font-semibold hover:bg-trocly-red/90 transition-colors"
-            >
-              Sign Up
-            </Link>
+            {!isLoggedIn && (
+              <Link 
+                to="/signup" 
+                className="ml-2 px-4 py-2 bg-trocly-red text-white rounded-full text-sm font-semibold hover:bg-trocly-red/90 transition-colors"
+              >
+                Sign Up
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -213,13 +238,15 @@ const Navbar = () => {
             >
               Contact
             </Link>
-            <Link 
-              to="/signup" 
-              className="block w-full text-center py-2 px-4 bg-trocly-red text-white font-semibold rounded-lg hover:bg-trocly-red/90 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Sign Up
-            </Link>
+            {!isLoggedIn && (
+              <Link 
+                to="/signup" 
+                className="block w-full text-center py-2 px-4 bg-trocly-red text-white font-semibold rounded-lg hover:bg-trocly-red/90 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Sign Up
+              </Link>
+            )}
             <div className="pt-2 flex items-center space-x-4 border-t">
               <Link 
                 to="/account" 

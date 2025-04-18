@@ -83,7 +83,7 @@ const Wishlist = () => {
                           className="w-full h-full object-cover rounded-lg"
                         />
                         <Link 
-                          to={`/product/${product.id}`}
+                          to={`/products/${product.id}`}
                           className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg"
                         >
                           <Eye className="w-5 h-5 text-white" />
@@ -92,7 +92,7 @@ const Wishlist = () => {
                       
                       <div className="flex-grow">
                         <Link 
-                          to={`/product/${product.id}`}
+                          to={`/products/${product.id}`}
                           className="text-lg font-medium hover:text-trocly-red transition-colors"
                         >
                           {product.name}
