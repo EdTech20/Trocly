@@ -1,33 +1,65 @@
+
 import { Link } from "react-router-dom";
-import { Heart, ShoppingCart, Star } from "lucide-react";
+import { Heart, ShoppingCart, Star, Check } from "lucide-react";
 import type { Product } from "@/types/product";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { addToCart, addToWishlist, getWishlistStatus } from "./utils/shopping";
+import { addToCart,  addToWishlist, getWishlistStatus } from "./utils/shopping";
 
 interface ProductCardProps {
   product: Product;
 }
 
+const CART_KEY = "cart";
+
+function getCartFromStorage(): Product[] {
+  try {
+    const raw = localStorage.getItem(CART_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCartToStorage(cart: Product[]) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
 
+  // Check if product is in cart on mount or when product changes
   useEffect(() => {
     setIsWishlisted(getWishlistStatus(product.id));
+    const cart = getCartFromStorage();
+    setIsInCart(cart.some((item) => item.id === product.id));
 
-    const handleWishlistUpdate = () => {
-      setIsWishlisted(getWishlistStatus(product.id));
+    const handleWishlistUpdate = () => setIsWishlisted(getWishlistStatus(product.id));
+    const handleCartUpdate = () => {
+      const cart = getCartFromStorage();
+      setIsInCart(cart.some((item) => item.id === product.id));
     };
 
     window.addEventListener("wishlistUpdated", handleWishlistUpdate);
-    return () => window.removeEventListener("wishlistUpdated", handleWishlistUpdate);
+    window.addEventListener("cartUpdated", handleCartUpdate);
+    return () => {
+      window.removeEventListener("wishlistUpdated", handleWishlistUpdate);
+      window.removeEventListener("cartUpdated", handleCartUpdate);
+    };
   }, [product.id]);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    addToCart(product);
+    // Add to cart in localStorage
+    let cart = getCartFromStorage();
+    if (!cart.some((item) => item.id === product.id)) {
+      cart.push(product);
+      saveCartToStorage(cart);
+    }
+    setIsInCart(true);
 
-    // 🚨 Trigger a custom cart update event
+    addToCart(product); // Optional: call original util
     const event = new CustomEvent("cartUpdated");
     window.dispatchEvent(event);
   };
@@ -35,8 +67,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleAddToWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
     addToWishlist(product);
-
-    // Optional: already handled via useEffect
     const event = new Event("wishlistUpdated");
     window.dispatchEvent(event);
   };
@@ -101,11 +131,25 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </div>
             <Button
               size="sm"
-              className="bg-trocly-red hover:bg-red-700 text-white"
-              onClick={handleAddToCart}
+              className={`text-white transition-all ${
+                isInCart
+                  ? "bg-green-500 hover:bg-green-600 pointer-events-none"
+                  : "bg-trocly-red hover:bg-red-700"
+              }`}
+              onClick={!isInCart ? handleAddToCart : undefined}
+              aria-disabled={isInCart}
             >
-              <ShoppingCart className="w-3.5 h-3.5 mr-1" />
-              Add to Cart
+              {isInCart ? (
+                <>
+                  <Check className="w-3.5 h-3.5 mr-1" />
+                  Added
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="w-3.5 h-3.5 mr-1" />
+                  Add to Cart
+                </>
+              )}
             </Button>
           </div>
         </div>

@@ -1,3 +1,4 @@
+
 import type { Product, Category } from "@/types/product";
 
 export const categories: Category[] = [
@@ -91,6 +92,126 @@ export const products: Product[] = [
       material: "Glass and Metal",
       dimensions: "120x60x45cm",
       weight: "15kg"
+    }
+  },
+  // NEW PRODUCTS BELOW
+  {
+    id: 4,
+    name: "Elegant Gold Necklace",
+    price: 399.99,
+    rating: 4.9,
+    category: "Jewelry",
+    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=600&q=80",
+    description: "24K gold necklace perfect for special occasions.",
+    brand: "Golden Touch",
+    sku: "GN004",
+    stock: 12,
+    specifications: {
+      material: "24K Gold",
+      length: "45cm",
+      weight: "10g"
+    },
+    features: ["Elegant design", "Pure gold", "Gift box included"]
+  },
+  {
+    id: 5,
+    name: "Luxury SUV",
+    price: 45999.0,
+    rating: 4.7,
+    category: "Vehicles",
+    image: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=600&q=80",
+    description: "Spacious luxury SUV with advanced safety features.",
+    brand: "DriveLux",
+    sku: "SUV005",
+    stock: 5,
+    specifications: {
+      engine: "V6",
+      seats: "7",
+      color: "Metallic Silver"
+    }
+  },
+  {
+    id: 6,
+    name: "Smartwatch Series 7",
+    price: 299.99,
+    rating: 4.2,
+    category: "Electronics",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+    description: "Modern smartwatch with health tracking and GPS.",
+    brand: "TechTime",
+    sku: "SW007",
+    stock: 40,
+    specifications: {
+      battery: "18 hours",
+      display: "AMOLED",
+      waterResistance: "50m"
+    }
+  },
+  {
+    id: 7,
+    name: "Orange Cat Plush",
+    price: 24.99,
+    rating: 4.8,
+    category: "Home & Garden",
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=600&q=80",
+    description: "Cuddly plush cat for home or office.",
+    brand: "CuddleHome",
+    sku: "PL007",
+    stock: 44,
+    specifications: {
+      material: "Polyester",
+      dimensions: "30x16x14cm"
+    }
+  },
+  {
+    id: 8,
+    name: "Vintage Matrix Poster",
+    price: 19.99,
+    rating: 4.7,
+    category: "Home & Garden",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+    description: "Iconic Matrix movie poster for your wall.",
+    brand: "ArtHouse",
+    sku: "PO123",
+    stock: 87,
+    specifications: {
+      size: "60x90cm",
+      type: "Poster"
+    }
+  },
+  {
+    id: 9,
+    name: "Floral Orange Vase",
+    price: 49.99,
+    rating: 4.4,
+    category: "Home & Garden",
+    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=600&q=80",
+    description: "Beautiful orange floral vase for any decor.",
+    brand: "DecoFlora",
+    sku: "VO009",
+    stock: 30,
+    specifications: {
+      material: "Ceramic",
+      height: "30cm"
+    }
+  },
+  {
+    id: 10,
+    name: "Work-from-Home Laptop",
+    price: 899.99,
+    originalPrice: 1099.99,
+    rating: 4.6,
+    category: "Electronics",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=600&q=80",
+    isNew: true,
+    description: "Lightweight laptop perfect for remote work.",
+    brand: "ComputePro",
+    sku: "LP010",
+    stock: 28,
+    specifications: {
+      processor: "Intel i5",
+      ram: "16GB",
+      storage: "512GB SSD"
     }
   }
 ];
