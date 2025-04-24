@@ -22,7 +22,7 @@ export const categories: Category[] = [
   },
   { 
     id: "4",
-    name: "Jewelry",
+    name: "Jewelry & Accessories",
     description: "Elegant jewelry pieces",
     image: "/placeholder.svg"
   },
@@ -30,6 +30,43 @@ export const categories: Category[] = [
     id: "5",
     name: "Vehicles",
     description: "Cars and vehicles",
+    image: "/placeholder.svg"
+  },
+
+  { 
+    id: "6",
+    name: "Kitchen",
+    description: "Home kitchen",
+    image: "/placeholder.svg"
+  }
+
+  ,
+
+  { 
+    id: "7",
+    name: "Women's clothings",
+    description: "clothings",
+    image: "/placeholder.svg"
+  },
+
+  { 
+    id: "8",
+    name: "Toy & Games",
+    description: "Arcade",
+    image: "/placeholder.svg"
+  },
+
+  { 
+    id: "9",
+    name: "Beauty & Health",
+    description: "Health",
+    image: "/placeholder.svg"
+  },
+
+  { 
+    id: "10",
+    name: "Sport & outdoors",
+    description: "Sports",
     image: "/placeholder.svg"
   }
 ];

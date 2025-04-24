@@ -12,7 +12,12 @@ import {
   Smartphone,
   Home,
   Gem,
-  Car
+  Car,
+  Building,
+  Briefcase,
+  Camera,
+  Headphones,
+  Book
 } from "lucide-react";
 import { products, categories, getProductsByCategory } from "@/components/data/product";
 import type { Product } from "@/types/product";
@@ -148,6 +153,11 @@ const Shop = () => {
                     {category.id === "home" && <Home className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
                     {category.id === "jewelry" && <Gem className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
                     {category.id === "vehicles" && <Car className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
+                    {category.id === "building" && <Building className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
+                    {category.id === "briefcase" && <Briefcase className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
+                    {category.id === "camera" && <Camera className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
+                    {category.id === "headphones" && <Headphones className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
+                    {category.id === "book" && <Book className="w-8 h-8 text-gray-600 group-hover:text-trocly-red transition-colors" />}
                   </div>
                   <h3 className="font-medium text-gray-800 group-hover:text-trocly-red transition-colors">
                     {category.name}
